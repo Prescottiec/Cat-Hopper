@@ -20,3 +20,11 @@ The page will be a simple layout with the game board, nav links, main title, and
 ## Architecture and Technologies
 This project will be implemented with the following technologies:
 * `Javascript` for game logic,
+* `HTML5 Canvas` for effects rendering
+
+## Implementation Timeline
+### Day 1:
+Setup all necessary modules and write a basic entry file. Learn HTML5 Canvas. Setup the basic skeleton.
+
+### Day 2:
+Dedicate this day to creating the game board to render the grid to HTML5 Canvas
