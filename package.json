@@ -2,9 +2,11 @@
   "name": "cat_hopper",
   "version": "1.0.0",
   "description": "## Background Cat Hopper is a simple and classic looking game where the runner, a cat, jumps over obstacles in a setting of a town. As time passes in the game, the faster the cat will run making it more and more challenging. There is only one rule: don't run into any obstacles. If the cat hits an obstacle, then the game will start over and if the user has a highscore then they would be put onto the score board.",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/Prescottiec/Cat-Hopper#readme",
   "dependencies": {
+    "lodash": "^4.17.15",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
