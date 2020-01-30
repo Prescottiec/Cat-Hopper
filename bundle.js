@@ -194,6 +194,10 @@ class Game {
         const backgroundImg = new Image();
         backgroundImg.src = './assets/imgs/bg.png';
         this.background = new Background(backgroundCtx, backgroundImg, -35, 1422, 0.8);
+
+        const foregroundImg = new Image();
+        foregroundImg.src = "./assets/imgs/foreground-trees.png";
+        this.foreground = new Background(foregroundCtx, foregroundImg, 250, 720, 6);
     }
 }
 
