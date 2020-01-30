@@ -86,35 +86,44 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/animation.js":
-/*!**************************!*\
-  !*** ./src/animation.js ***!
-  \**************************/
+/***/ "./src/background.js":
+/*!***************************!*\
+  !*** ./src/background.js ***!
+  \***************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function Animation(spritesheet, frameSpeed, startFrame, endFrame) {
-    var animationSequence = [];
-    var currentFrame = 0;
-    var counter = 0;
+class Background {
+    constructor(ctx, image, posY, imageLength, speed) {
+        this.image = image;
+        this.speed = speed;
+        this.posX = 0;
+        this.posY = posY;
+        this.imageLength = imageLength;
+        this.ctx = ctx;
+    }
 
-    for (var frameNumber = startFrame; frameNumber <= endFrame; frameNumber++) {
-        animationSequence.push(frameNumber); // double check this
-    } 
-
-    this.update = function() {
-        if (counter === (frameSpeed - 1)) {
-            currentFrame = (currentFrame + 1) % animationSequence.length;
+    draw() {
+        this.ctx.clearRect(0, 0, 800, 300);
+        this.ctx.drawImage(this.image, this.x, this.y);
+        this.ctx.drawImage(this.image, this.x + this.imageLength, this.y);
+        if (this.imageLength < 800) {
+            this.ctx.drawImage(this.image, this.x + this.imageLength * 2, this.y);
         }
-        counter = (counter + 1) % frameSpeed;
-    };
+        if (this.x <= -this.imageLength) {
+            this.x = 0;
+        }
+        this.scrollImage();
+    }
 
+    scrollImage() {
+        this.x -= this.speed;
+    }
+};
 
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Animation);
+/* harmony default export */ __webpack_exports__["default"] = (Background);
 
 /***/ }),
 
@@ -122,41 +131,98 @@ function Animation(spritesheet, frameSpeed, startFrame, endFrame) {
 /*!*********************!*\
   !*** ./src/game.js ***!
   \*********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-(function() {
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-    var player = {};
-    var ground = [];
-    var platformWidth = 32;
-    var platformHeight = canvas.height - platformWidth * 4;
+// const Player = require("./player");
+const Background = __webpack_require__(/*! ./background */ "./src/background.js");
+// const Tree = require("./tree");
+const Util = __webpack_require__(/*! ./util */ "./src/util.js");
+const drawGameOver = __webpack_require__(/*! ./gameover */ "./src/gameover.js");
+// const Menu = require("./menu");
 
-    // Load all the images
-    var assetLoader = (function() {
-        this.imgs = {
-            "bg": "imgs/bg.png",
-            "backdrop" : "imgs/foreground-trees.png",
-            "backdrop2" : "imgs/mountain-far.png",
-            "backdrop3" : "imgs/mountains.png",
-            "backdrop4" : "imgs/trees.png",
-            "avatar" : "imgs/character.png"
-        };
+class Game {
+    constructor(ctx, gameCanvas, backgroundCtx, foregroundCtx) {
+        this.ctx = ctx;
+        this.gameCanvas = gameCanvas;
+        this.player = new Player({ position: [100, 210] });
+        this.obstacleInterval = 0;
+        this.spawnRate = 60;
+        this.nextSpawn = this.spawnRate + Util.getRandomIntInclusive(0, 25);
+        this.obstacles = [];
+        this.score = new Score(1);
+        this.muteMusic = false;
 
-        var assetsLoaded = 0;
-        var numImgs = Object.keys(this.imgs).length;
-        this.totalAsset = numImgs;
+        this.jump = this.jump.bind(this);
+        this.draw = this.draw.bind(this);
+        this.resetGame = this.resetGame.bind(this);
 
-        // function assetLoaded(dic, name) {
-        //     if (this[dic][name].status !==)
-        // }
-    })
-});
+        this.createBackground(backgroundCtx, foregroundCtx);
+        this.setSounds();
+        this.setButtonListeners();
 
-/* harmony default export */ __webpack_exports__["default"] = (Game);
+        // Menu.setMenuButtons(this);
+    }
+
+    jump(e) {
+        if (e.code === "Space" && this.gamePlaying) {
+            e.preventDefault();
+            if (!this.gameOver) {
+                this.player.toggleJump();
+            }
+        }
+    }
+
+    setButtonListeners() {
+        this.gameCanvas.addEventListener("keydown", this.jump);
+        this.gameCanvas.addEventListener("keydown", this.resetGame);
+    }
+
+    // createObstacles() {
+
+    // }
+
+    // generateObstacle() {
+
+    // }
+
+    // setSounds() {
+
+    // }
+
+    createBackground(backgroundCtx, foregroundCtx) {
+        const backgroundImg = new Image();
+        backgroundImg.src = './assets/imgs/bg.png';
+        this.background = new Background(backgroundCtx, backgroundImg, -35, 1422, 0.8);
+    }
+}
+
+module.exports = Game;
+
+/***/ }),
+
+/***/ "./src/gameover.js":
+/*!*************************!*\
+  !*** ./src/gameover.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+const drawGameOver = ctx => {
+  const text1 = "GAME OVER";
+  const text2 = "Press space to reset the game";
+  ctx.font = "48px VT323";
+  ctx.fillStyle = "#fef86c";
+  ctx.textAlign = "center";
+  ctx.strokeText(text1, 400, 150);
+  ctx.fillText(text1, 400, 150);
+  ctx.font = "32px VT323";
+  ctx.strokeText(text2, 400, 180);
+  ctx.fillText(text2, 400, 180);
+};
+
+module.exports = drawGameOver;
+
 
 /***/ }),
 
@@ -170,14 +236,59 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/animation.js");
-
+/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_game__WEBPACK_IMPORTED_MODULE_0__);
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('catHopper');
     const context = canvas.getContext('2d');
 });
+
+/***/ }),
+
+/***/ "./src/util.js":
+/*!*********************!*\
+  !*** ./src/util.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+const Util = {
+  getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+  },
+  numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Print an integer in JS with commas as thousands separators
+  },
+  createCookie(name, value, days) {
+      if (days) {
+          const date = new Date();
+          date.setTime(date.getTime() + (days*24*60*60*1000)); // expires in 2038
+          let expires = "; expires =" + date.toUTCString();
+      } else {
+          let expires = "";
+      }
+      document.cookie = name + "=" + value + expires + "; path=/";
+  },
+  readCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(";");
+      for ( var i = 0; i < ca.length; i++ ) {
+          var c = ca[i];
+          while (c.charAt(0) === " ") {
+            c = c.substring(1, c.length);
+          }
+          if (c.indexOf(nameEQ) === 0) {
+            return c.substring(nameEQ.length, c.length);
+          }
+      }
+      return null;
+  }
+};
+
+module.exports = Util;
 
 /***/ })
 
