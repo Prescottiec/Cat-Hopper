@@ -1,0 +1,36 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+}
+
+.game-area {
+  position: relative;
+  border: 0;
+  height: 300px;
+  width: 800px;
+  display: inline-block;
+  margin: 40px auto;
+}
+
+#game-canvas {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #C8C2E2;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+#background-canvas {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+
+#foreground-canvas {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}

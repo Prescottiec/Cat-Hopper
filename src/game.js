@@ -1,4 +1,4 @@
-// const Player = require("./player");
+const Player = require("./player");
 const Background = require("./background");
 // const Tree = require("./tree");
 const Util = require("./util");
@@ -14,7 +14,7 @@ class Game {
         this.spawnRate = 60;
         this.nextSpawn = this.spawnRate + Util.getRandomIntInclusive(0, 25);
         this.obstacles = [];
-        this.score = new Score(1);
+        // this.score = new Score(1);
         this.muteMusic = false;
 
         this.jump = this.jump.bind(this);
@@ -63,6 +63,8 @@ class Game {
         foregroundImg.src = "./assets/imgs/foreground-trees.png";
         this.foreground = new Background(foregroundCtx, foregroundImg, 250, 720, 6);
     }
+
+    
 }
 
 module.exports = Game;
