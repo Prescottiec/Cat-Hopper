@@ -26,4 +26,4 @@ class Background {
     }
 };
 
-export default Background;
+module.exports = Background;

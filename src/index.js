@@ -18,6 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     foregroundCanvasContext
   );
 
-  game.openMenu();
+  // game.openMenu();
 });
 
