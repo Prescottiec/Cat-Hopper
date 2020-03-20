@@ -1,15 +1,38 @@
-const Player = require("./player");
-const Background = require("./background");
-// const Tree = require("./tree");
+import Background from "./background";
+const Background1URL = require("../assets/imgs/background-layer1.png");
+const Background2URL = require("../assets/imgs/background-layer2.png");
+const Background3URL = require("../assets/imgs/background-layer3.png");
+const Background4URL = require("../assets/imgs/background-layer4.png");
+const Background5URL = require("../assets/imgs/background-layer5.png");
+const Background6URL = require("../assets/imgs/background-layer6.png");
+
+import Player from "./player";
+const PlayerURL = require("../assets/imgs/player/Cat-Hopper.png");
+
 const Util = require("./util");
 const drawGameOver = require("./gameover");
-// const Menu = require("./menu");
 
 class Game {
-    constructor(ctx, gameCanvas, backgroundCtx, foregroundCtx) {
-        this.ctx = ctx;
+    constructor(
+        gameCanvas, 
+        gameContext, 
+        background1Context, 
+        background2Context, 
+        background3Context, 
+        background4Context, 
+        background5Context, 
+        background6Context, 
+    ) {
         this.gameCanvas = gameCanvas;
-        this.player = new Player({ position: [100, 210] });
+        this.gameContext = gameContext;
+
+        this.background1Context = background1Context;
+        this.background2Context = background2Context;
+        this.background3Context = background3Context;
+        this.background4Context = background4Context;
+        this.background5Context = background5Context;
+        this.background6Context = background6Context;
+        
         this.obstacleInterval = 0;
         this.spawnRate = 60;
         this.nextSpawn = this.spawnRate + Util.getRandomIntInclusive(0, 25);
@@ -74,18 +97,12 @@ class Game {
         cat.className = "cat";
         this.trees = 0;
         this.player.position = [100, 210];
-        // this.obstacles = [];
-        // this.birds = diffOptions.birds;
-        // this.score.multiplier = diffOptions.multiplier;
-        // this.maxTrees = diffOptions.maxTrees;
-        // this.maxObstacles = diffOptions.maxObstacles;
         this.draw();
     }
 
     draw() {
         requestAnimationFrame(this.draw);
         this.player.update(this.ctx);
-        // this.createObstacles();
         this.background.draw();
         this.foreground.draw();
     }

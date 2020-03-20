@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset='utf-8'/>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <script src='https://unpkg.com/lodash@4.16.6'></script>
-    <title>Cat-Hopper</title>
-    <link rel="icon" type="imgs/ico" href="../favicon.ico">
-    <link rel="stylesheet" href="../assets/stylesheets/style.css" type="text/css"/>
-    <script src='../bundle.js' type='text/javascript'></script>
-</head>
-<body>
+    <head>
+        <meta charset='utf-8'/>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <script src='https://unpkg.com/lodash@4.16.6'></script>
+        <title>Cat-Hopper</title>
+        <link rel="icon" type="imgs/ico" href="../favicon.ico">
+        <link rel="stylesheet" href="../assets/stylesheets/style.css" type="text/css"/>
+        <script src='../bundle.js' type='text/javascript'></script>
+    </head>
+    <body>
 
-    <main>
-        <div class="game-display" style="display: flex; justify-content: center; height: 300px; width: 800px; background-color: black;">
-            <canvas id="game-canvas" width="300" height="800" tabindex="1" style="background-color: red;"></canvas>
-            <canvas id="background-canvas" height="302" width="802"></canvas>
-            <canvas id="foreground-canvas" height="302" width="802"></canvas>
-        </div>
-    </main>
-</body>
+        <main>
+            <div class="game-canvas">
+                <canvas class="background-canvas" id="background1-canvas" height="302" width="802"></canvas>
+                <canvas class="background-canvas" id="background2-canvas" height="302" width="802"></canvas>
+            </div>
+        </main>
+
+    </body>
 </html>
-

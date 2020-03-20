@@ -86,6 +86,107 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./assets/imgs/background-layer1.png":
+/*!*******************************************!*\
+  !*** ./assets/imgs/background-layer1.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '�' (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n(Source code omitted for this binary file)");
+
+/***/ }),
+
+/***/ "./assets/imgs/background-layer2.png":
+/*!*******************************************!*\
+  !*** ./assets/imgs/background-layer2.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '�' (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n(Source code omitted for this binary file)");
+
+/***/ }),
+
+/***/ "./assets/imgs/background-layer3.png":
+/*!*******************************************!*\
+  !*** ./assets/imgs/background-layer3.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '�' (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n(Source code omitted for this binary file)");
+
+/***/ }),
+
+/***/ "./assets/imgs/background-layer4.png":
+/*!*******************************************!*\
+  !*** ./assets/imgs/background-layer4.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '�' (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n(Source code omitted for this binary file)");
+
+/***/ }),
+
+/***/ "./assets/imgs/background-layer5.png":
+/*!*******************************************!*\
+  !*** ./assets/imgs/background-layer5.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '�' (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n(Source code omitted for this binary file)");
+
+/***/ }),
+
+/***/ "./assets/imgs/background-layer6.png":
+/*!*******************************************!*\
+  !*** ./assets/imgs/background-layer6.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '�' (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n(Source code omitted for this binary file)");
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/harmony-module.js":
+/*!*******************************************!*\
+  !*** (webpack)/buildin/harmony-module.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function(originalModule) {
+	if (!originalModule.webpackPolyfill) {
+		var module = Object.create(originalModule);
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		Object.defineProperty(module, "exports", {
+			enumerable: true
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+
 /***/ "./src/background.js":
 /*!***************************!*\
   !*** ./src/background.js ***!
@@ -129,21 +230,50 @@ module.exports = Background;
 /*!*********************!*\
   !*** ./src/game.js ***!
   \*********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-const Player = __webpack_require__(/*! ./player */ "./src/player.js");
-const Background = __webpack_require__(/*! ./background */ "./src/background.js");
-// const Tree = require("./tree");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./background */ "./src/background.js");
+/* harmony import */ var _background__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_background__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./src/player.js");
+/* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_player__WEBPACK_IMPORTED_MODULE_1__);
+
+const Background1URL = __webpack_require__(/*! ../assets/imgs/background-layer1.png */ "./assets/imgs/background-layer1.png");
+const Background2URL = __webpack_require__(/*! ../assets/imgs/background-layer2.png */ "./assets/imgs/background-layer2.png");
+const Background3URL = __webpack_require__(/*! ../assets/imgs/background-layer3.png */ "./assets/imgs/background-layer3.png");
+const Background4URL = __webpack_require__(/*! ../assets/imgs/background-layer4.png */ "./assets/imgs/background-layer4.png");
+const Background5URL = __webpack_require__(/*! ../assets/imgs/background-layer5.png */ "./assets/imgs/background-layer5.png");
+const Background6URL = __webpack_require__(/*! ../assets/imgs/background-layer6.png */ "./assets/imgs/background-layer6.png");
+
+
+const PlayerURL = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../assets/imgs/player/Cat-Hopper.png'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
 const Util = __webpack_require__(/*! ./util */ "./src/util.js");
 const drawGameOver = __webpack_require__(/*! ./gameover */ "./src/gameover.js");
-// const Menu = require("./menu");
 
 class Game {
-    constructor(ctx, gameCanvas, backgroundCtx, foregroundCtx) {
-        this.ctx = ctx;
+    constructor(
+        gameCanvas, 
+        gameContext, 
+        background1Context, 
+        background2Context, 
+        background3Context, 
+        background4Context, 
+        background5Context, 
+        background6Context, 
+    ) {
         this.gameCanvas = gameCanvas;
-        this.player = new Player({ position: [100, 210] });
+        this.gameContext = gameContext;
+
+        this.background1Context = background1Context;
+        this.background2Context = background2Context;
+        this.background3Context = background3Context;
+        this.background4Context = background4Context;
+        this.background5Context = background5Context;
+        this.background6Context = background6Context;
+        
         this.obstacleInterval = 0;
         this.spawnRate = 60;
         this.nextSpawn = this.spawnRate + Util.getRandomIntInclusive(0, 25);
@@ -191,11 +321,11 @@ class Game {
     createBackground(backgroundCtx, foregroundCtx) {
         const backgroundImg = new Image();
         backgroundImg.src = '../assets/imgs/bg.png';
-        this.background = new Background(backgroundCtx, backgroundImg, -35, 1422, 0.8);
+        this.background = new _background__WEBPACK_IMPORTED_MODULE_0___default.a(backgroundCtx, backgroundImg, -35, 1422, 0.8);
 
         const foregroundImg = new Image();
         foregroundImg.src = "../assets/imgs/foreground-trees.png";
-        this.foreground = new Background(foregroundCtx, foregroundImg, 250, 720, 6);
+        this.foreground = new _background__WEBPACK_IMPORTED_MODULE_0___default.a(foregroundCtx, foregroundImg, 250, 720, 6);
     }
 
     start() {
@@ -208,24 +338,19 @@ class Game {
         cat.className = "cat";
         this.trees = 0;
         this.player.position = [100, 210];
-        // this.obstacles = [];
-        // this.birds = diffOptions.birds;
-        // this.score.multiplier = diffOptions.multiplier;
-        // this.maxTrees = diffOptions.maxTrees;
-        // this.maxObstacles = diffOptions.maxObstacles;
         this.draw();
     }
 
     draw() {
         requestAnimationFrame(this.draw);
         this.player.update(this.ctx);
-        // this.createObstacles();
         this.background.draw();
         this.foreground.draw();
     }
 }
 
 module.exports = Game;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
 
@@ -265,11 +390,28 @@ const Player = __webpack_require__(/*! ./player.js */ "./src/player.js");
 const Game = __webpack_require__(/*! ./game.js */ "./src/game.js");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const gameCanvas = document.getElementById("game-canvas");
-  const canvasContext = gameCanvas.getContext("2d");
 
-  const backgroundCanvas = document.getElementById("background-canvas");
-  const backgroundCanvasContext = backgroundCanvas.getContext("2d");
+  const gameCanvas = document.getElementById("game-canvas");
+  gameCanvas.width = WIDTH;
+  gameCanvas.height = HEIGHT;
+  const gameContext = gameCanvas.getContext("2d");
+
+  const background1Canvas = document.getElementById("background1-canvas");
+  background1Canvas.width = WIDTH;
+  background1Canvas.height = HEIGHT;
+  const background1Context = background1Canvas.getContext("2d");
+
+  const background2Canvas = document.getElementById("background2-canvas");
+  background2Canvas.width = WIDTH;
+  background2Canvas.height = HEIGHT;
+  const background2Context = background2Canvas.getContext("2d");
+
+  const background3Canvas = document.getElementById("background3-canvas");
+  background3Canvas.width = WIDTH;
+  background3Canvas.height = HEIGHT;
+  const background3Context = background3Canvas.getContext("2d");
+
+  
 
   const foregroundCanvas = document.getElementById("foreground-canvas");
   const foregroundCanvasContext = foregroundCanvas.getContext("2d");
@@ -281,10 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
     foregroundCanvasContext
   );
 
-  // game.openMenu();
 });
-
-
 
 /***/ }),
 
